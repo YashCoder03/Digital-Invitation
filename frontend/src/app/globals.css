@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fbf3e6;
+  --foreground: #3a1512;
+  --ivory: #fbf3e6;
+  --cream: #fff8ed;
+  --saffron: #d9770f;
+  --red: #a3242b;
+  --maroon: #5c1a24;
+  --gold: #b8903f;
+  --sage: #6b8f71;
+  --blush: #e2a8b4;
+  --wine: #5b1f2e;
+  --terracotta: #c1603f;
+  --champagne: #e8d5b3;
+  --babyblue: #b7d3e0;
+  --peach: #f2cba6;
+  --ink: #221a1e;
+  --peacock: #0f5c4f;
+  --royal-purple: #4a2360;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ivory: var(--ivory);
+  --color-cream: var(--cream);
+  --color-saffron: var(--saffron);
+  --color-red: var(--red);
+  --color-maroon: var(--maroon);
+  --color-gold: var(--gold);
+  --color-sage: var(--sage);
+  --color-blush: var(--blush);
+  --color-wine: var(--wine);
+  --color-terracotta: var(--terracotta);
+  --color-champagne: var(--champagne);
+  --color-babyblue: var(--babyblue);
+  --color-peach: var(--peach);
+  --color-ink: var(--ink);
+  --color-peacock: var(--peacock);
+  --color-royal-purple: var(--royal-purple);
+  --font-serif: var(--font-playfair);
+  --font-script: var(--font-script);
+  --font-body: var(--font-body);
+  --font-devanagari: var(--font-devanagari);
+  --font-devanagari-serif: var(--font-devanagari-serif);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-devanagari), var(--font-body), serif;
+}
+
+/* Marathi text renders with the Devanagari serif for headings, sans for body */
+.lang-mr {
+  font-family: var(--font-devanagari), sans-serif;
+}
+
+.lang-mr h1,
+.lang-mr h2,
+.lang-mr h3,
+.lang-mr .font-script,
+.lang-mr .font-serif {
+  font-family: var(--font-devanagari-serif), serif;
+}
+
+/* Wide letter-spacing and uppercase transforms break Devanagari conjuncts/matras */
+.lang-mr [class*="tracking-"] {
+  letter-spacing: normal;
+}
+
+.lang-mr .uppercase {
+  text-transform: none;
+}
+
+@keyframes invite-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Subtle entrance used on the public invitation; automatically skipped under prefers-reduced-motion */
+@utility animate-invite-fade-up {
+  animation: invite-fade-up 0.7s ease-out both;
+}
+
+/* Repeating mango-leaf toran garland strip used as a section-top ornament */
+.toran-strip {
+  background-image: repeating-linear-gradient(
+    115deg,
+    color-mix(in srgb, var(--color-maroon) 80%, transparent) 0px,
+    color-mix(in srgb, var(--color-maroon) 80%, transparent) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  mask-image: radial-gradient(circle at 50% -20%, black 60%, transparent 61%);
+}
+
+/* Fine gold hairline used between ornamental sections */
+.gold-hairline {
+  height: 1px;
+  background-image: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-gold) 80%, transparent) 20%,
+    color-mix(in srgb, var(--color-gold) 80%, transparent) 80%,
+    transparent
+  );
+}
+
+/* Subtle Paithani-inspired diamond lattice used as a section watermark */
+.paithani-pattern {
+  background-image:
+    linear-gradient(45deg, color-mix(in srgb, var(--color-gold) 14%, transparent) 25%, transparent 25%, transparent 75%, color-mix(in srgb, var(--color-gold) 14%, transparent) 75%),
+    linear-gradient(45deg, color-mix(in srgb, var(--color-gold) 14%, transparent) 25%, transparent 25%, transparent 75%, color-mix(in srgb, var(--color-gold) 14%, transparent) 75%);
+  background-size: 28px 28px;
+  background-position: 0 0, 14px 14px;
+}
