@@ -1,0 +1,47 @@
+databases:
+  - name: shubhinvite-db
+    databaseName: shubhinvite
+    user: shubhinvite
+    plan: free
+
+services:
+  - type: web
+    name: shubhinvite-backend
+    runtime: docker
+    plan: free
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /v3/api-docs
+    envVars:
+      - key: DATABASE_HOST
+        fromDatabase:
+          name: shubhinvite-db
+          property: host
+      - key: DATABASE_PORT
+        fromDatabase:
+          name: shubhinvite-db
+          property: port
+      - key: DATABASE_NAME
+        fromDatabase:
+          name: shubhinvite-db
+          property: database
+      - key: DATABASE_USERNAME
+        fromDatabase:
+          name: shubhinvite-db
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: shubhinvite-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRATION
+        value: "86400000"
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
