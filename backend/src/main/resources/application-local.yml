@@ -1,0 +1,28 @@
+# Local development overrides.
+# Activate with: SPRING_PROFILES_ACTIVE=local
+# Copy backend/.env.example to backend/.env (or export these as real env vars) before running.
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/shubhinvite
+    username: postgres
+    password: root
+
+  jpa:
+    show-sql: true
+
+app:
+  jwt:
+    secret: local-development-only-secret-do-not-use-in-production-1234567890
+    expiration-ms: 86400000
+  cors:
+    allowed-origins: http://localhost:3000
+  cloudinary:
+    cloud-name: ${CLOUDINARY_CLOUD_NAME:}
+    api-key: ${CLOUDINARY_API_KEY:}
+    api-secret: ${CLOUDINARY_API_SECRET:}
+
+logging:
+  level:
+    com.shubhinvite: DEBUG
+    org.springframework.security: DEBUG

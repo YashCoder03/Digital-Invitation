@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:shubhinvite-test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+
+  flyway:
+    enabled: false
+
+app:
+  jwt:
+    secret: test-secret-key-used-only-for-automated-tests-1234567890
+    expiration-ms: 3600000
+  cors:
+    allowed-origins: http://localhost:3000
+  cloudinary:
+    cloud-name: test-cloud
+    api-key: test-key
+    api-secret: test-secret
+  photos:
+    limits:
+      couple: 1
+      gallery: 20
+      family: 5
