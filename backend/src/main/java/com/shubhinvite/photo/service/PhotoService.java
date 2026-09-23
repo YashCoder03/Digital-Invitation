@@ -106,9 +106,10 @@ public class PhotoService {
         getOwnedInvitation(invitationId, userId);
 
         for (int index = 0; index < photoIds.size(); index++) {
-            InvitationPhoto photo = photoRepository.findByIdAndInvitation_Id(photoIds.get(index), invitationId)
-                    .orElseThrow(() -> new ResourceNotFoundException("Photo not found: " + photoIds.get(index)));
-            photo.setDisplayOrder(index);
+            int currentIndex = index;
+            InvitationPhoto photo = photoRepository.findByIdAndInvitation_Id(photoIds.get(currentIndex), invitationId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Photo not found: " + photoIds.get(currentIndex)));
+            photo.setDisplayOrder(currentIndex);
         }
     }
 
